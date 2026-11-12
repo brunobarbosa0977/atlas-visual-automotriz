@@ -1,0 +1,20 @@
+{
+  "name": "atlas-visual-automotriz",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "export-preview": "node scripts/export-preview.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "type": "module",
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  },
+  "dependencies": {
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/inter": "^5.3.0"
+  }
+}

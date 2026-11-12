@@ -1,0 +1,46 @@
+{
+  "source": "Atlas Visual de Diagnostico Automotriz - Completo_compressed.pdf",
+  "sha256": "8c8100e264e6d84b5010092fe03eba189669f821bfc4668602e162de33bd9e3b",
+  "samples": [
+    {
+      "code": "P0300",
+      "page": 38,
+      "file": "assets/samples/p0300.webp"
+    },
+    {
+      "code": "P0068",
+      "page": 8,
+      "file": "assets/samples/p0068.webp"
+    },
+    {
+      "code": "P0171",
+      "page": 23,
+      "file": "assets/samples/p0171.webp"
+    },
+    {
+      "code": "P0101",
+      "page": 10,
+      "file": "assets/samples/p0101.webp"
+    },
+    {
+      "code": "P0335",
+      "page": 58,
+      "file": "assets/samples/p0335.webp"
+    },
+    {
+      "code": "P0420",
+      "page": 64,
+      "file": "assets/samples/p0420.webp"
+    },
+    {
+      "code": "P0115",
+      "page": 75,
+      "file": "assets/samples/p0115.webp"
+    },
+    {
+      "code": "P0128",
+      "page": 80,
+      "file": "assets/samples/p0128.webp"
+    }
+  ]
+}

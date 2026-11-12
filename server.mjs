@@ -1,0 +1,5 @@
+import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {resolve,extname} from 'node:path';
+const root=process.cwd();
+http.createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const file=resolve(root,'.'+(path==='/'?'/index.html':path));if(!(/^\/(?:index\.html|styles\.css|app\.js|config\.js|content\.json|assets\/[^?]+)$/.test(path==='/'?'/index.html':path))||!file.startsWith(root+'/')||path.split('/').some(s=>s.startsWith('.')))throw Error();const content=await readFile(file);res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2'})[extname(file)]||'application/octet-stream');res.end(content)}catch{res.writeHead(404);res.end('No encontrado')}}).listen(Number(process.env.PORT)||3000,'0.0.0.0',()=>console.log('Atlas server ready on port '+(process.env.PORT||3000)));
