@@ -20,7 +20,7 @@ for (const src of [...new Set([...responsiveSources,config.guarantee.seal, ...Ob
 }
 let js=await readFile(new URL('app.js',root),'utf8');
 const start=js.indexOf('const esc =');
-js=js.replaceAll('esc(url(displaySrc))', 'esc(previewImages[displaySrc] || url(displaySrc))');
+js=js.replaceAll('esc(url(displaySrc))', 'esc(previewImages[displaySrc] || url(displaySrc))').replaceAll('esc(url(item.src))', 'esc(previewImages[item.src] || url(item.src))');
 const imageData=Object.fromEntries(Object.entries(manifest).map(([key,image])=>[key,{...image,variants:[]} ]));
 js=`const previewImages = ${JSON.stringify(previewImages)};\nconst imageData = ${JSON.stringify(imageData)};\nconst c = ${JSON.stringify(config)};\nconst data = ${await readFile(new URL('content.json',root),'utf8')};\n`+js.slice(start);
 html=html.replace('<link rel="stylesheet" href="styles.css">',`<style>${css}</style>`).replace('<script type="module" src="app.js"></script>',`<script type="module">${js.replaceAll('</script','<\\/script')}</script>`);

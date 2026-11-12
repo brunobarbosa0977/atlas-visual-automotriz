@@ -20,7 +20,7 @@ for(const width of [390,1440]) test(`Full sales page: layout and interactions at
       const initial=await details.getAttribute('open');await details.locator('summary').click();assert.notEqual(await details.getAttribute('open'),initial);
       await details.locator('summary').click();assert.equal(await details.getAttribute('open'),initial);
     }
-    assert.equal(await page.locator('.gallery').count(),5);
+    assert.equal(await page.locator('.gallery').count(),4);
     const sequences=await page.locator('#por-dentro .gallery').evaluateAll(tracks=>tracks.map(track=>track.dataset.sampleOrder.split(',').map(Number)));
     assert.deepEqual(sequences[1],[...sequences[0]].reverse());
     assert.equal(await page.locator('#muestras [data-sample]').first().getAttribute('data-sample'),'0');
@@ -49,8 +49,9 @@ for(const width of [390,1440]) test(`Full sales page: layout and interactions at
     assert.equal(await page.locator('dialog .illustration-note').textContent(),'Imagen ilustrativa generada con IA.');
     await page.locator('.lightbox-next').click();await page.keyboard.press('Escape');
     assert.ok((await page.locator('#experiencias .section-head').innerText()).includes('Conversaciones ficticias'));
-    assert.equal(await page.locator('#experiencias .gallery').getAttribute('data-cycle-size'),'4');
-    assert.equal(await page.locator('#experiencias img').count(),8);
+    assert.equal(await page.locator('#experiencias .gallery').count(),0);
+    assert.equal(await page.locator('#experiencias .feedback-grid [data-feedback]').count(),4);
+    assert.equal(await page.locator('#experiencias img').count(),4);
     await page.locator('[data-feedback]').first().click();assert.ok((await page.locator('#lightbox-title').innerText()).includes('WhatsApp'));await page.locator('#lightbox-content img').evaluate(el=>el.decode());assert.ok((await page.locator('dialog .illustration-note').textContent()).includes('conversación ficticia'));await page.keyboard.press('Escape');
     assert.ok(!(await page.locator('#muestras h2').innerText()).includes('vista previa'));
     assert.equal(await page.locator('.cta-card .button').textContent(),'Quiero garantizar mi Atlas ahora');

@@ -82,3 +82,8 @@
 .plan-complete .purchase{background:var(--orange);border:1px solid var(--orange);color:var(--ink);box-shadow:0 0 0 3px #ff8a1f26,0 7px 17px #ff8a1f17}
 @media(max-width:700px){.plans-grid .purchase{font-size:11px;min-height:47px;padding:13px 15px}}
 .illustration-note{font-size:12px;color:var(--muted);text-align:center;margin:18px 0 0}
+.feedback-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;max-width:1020px;margin:0 auto}
+.feedback-grid .feedback-card{width:100%;min-width:0;max-width:100%;height:auto;flex:none;padding:0;border-radius:18px;align-self:start;transition:box-shadow .2s}
+.feedback-grid .feedback-card:hover{transform:none;box-shadow:var(--shadow)}
+.feedback-grid .feedback-card img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:17px}
+@media(max-width:700px){.feedback-grid{grid-template-columns:1fr;gap:24px;max-width:420px}}

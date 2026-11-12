@@ -74,3 +74,5 @@ A seção en-practica reúne dez imagens geradas com IA mostrando formas de uso 
 ## Mockups de conversas
 
 Os quatro prints diferentes enviados pelo usuário ficam em conversationMockups, com fictional: true, e são exibidos sob o título Conversaciones sobre el Atlas. A seção e a ampliação informam que são conversas fictícias com imagens geradas por IA, sem tratar os personagens como clientes reais. Os arquivos não têm tarjas internas. Prints reais autorizados continuam separados em feedbackScreenshots; quando configurados, passam a ocupar a seção de experiências.
+
+Os quatro mockups de conversa são exibidos em grade estática (duas colunas no desktop, uma no celular), com ampliação ao clicar e carregamento tardio. Não fazem parte de um carrossel.
