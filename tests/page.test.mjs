@@ -43,12 +43,13 @@ for(const width of [390,1440]) test(`Full sales page: layout and interactions at
       assert.equal(await sample.evaluate(el=>el===document.activeElement),true);
     }
     assert.equal(await page.locator('#en-practica h2').textContent(),'Mecánicos usando el Atlas Visual en la práctica');
-    assert.ok((await page.locator('#en-practica .section-head').innerText()).includes('generadas con IA'));
+    assert.equal(await page.locator('#en-practica .button').textContent(),'Quiero recibir los 70 mapas visuales');
+    assert.equal(await page.locator('#en-practica .button').getAttribute('href'),'#oferta');
     const practice=page.locator('[data-practice]').first();await practice.click();
     await page.locator('#lightbox-content img').evaluate(el=>el.decode());
     assert.equal(await page.locator('dialog .illustration-note').textContent(),'Imagen ilustrativa generada con IA.');
     await page.locator('.lightbox-next').click();await page.keyboard.press('Escape');
-    assert.ok((await page.locator('#experiencias .section-head').innerText()).includes('Conversaciones ficticias'));
+    assert.equal(await page.locator('#experiencias .eyebrow').textContent(),'Ejemplos ilustrativos');
     assert.equal(await page.locator('#experiencias .gallery').count(),0);
     assert.equal(await page.locator('#experiencias .feedback-grid [data-feedback]').count(),4);
     assert.equal(await page.locator('#experiencias img').count(),4);
