@@ -49,7 +49,7 @@ for(const width of [390,1440]) test(`Full sales page: layout and interactions at
     await page.locator('#lightbox-content img').evaluate(el=>el.decode());
     assert.equal(await page.locator('dialog .illustration-note').textContent(),'Imagen ilustrativa generada con IA.');
     await page.locator('.lightbox-next').click();await page.keyboard.press('Escape');
-    assert.equal(await page.locator('#experiencias .eyebrow').textContent(),'Ejemplos ilustrativos');
+    assert.equal(await page.locator('#experiencias .eyebrow').textContent(),'Relatos Reales');
     assert.equal(await page.locator('#experiencias .gallery').count(),0);
     assert.equal(await page.locator('#experiencias .feedback-grid [data-feedback]').count(),4);
     assert.equal(await page.locator('#experiencias img').count(),4);
