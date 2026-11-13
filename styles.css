@@ -87,3 +87,11 @@
 .feedback-grid .feedback-card:hover{transform:none;box-shadow:var(--shadow)}
 .feedback-grid .feedback-card img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:17px}
 @media(max-width:700px){.feedback-grid{grid-template-columns:1fr;gap:24px;max-width:420px}}
+
+/* One WhatsApp screenshot per slide on both mobile and desktop. */
+.feedback-slider{max-width:490px;margin:0 auto}
+.feedback-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px}
+.feedback-track::-webkit-scrollbar{display:none}
+.feedback-track .feedback-card{flex:0 0 100%;width:100%;min-width:100%;height:auto;padding:0;scroll-snap-align:start;border-radius:18px;transform:none;align-self:start}
+.feedback-track .feedback-card:hover{transform:none}
+.feedback-track .feedback-card img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:17px}

@@ -124,8 +124,8 @@ document.querySelector('main').innerHTML = `
   ['Busca tu primer código.','Abre el índice, encuentra la ficha y sigue el recorrido que corresponda al caso.']
 ].map(([title,text],index) => `<li><h3><span class="step-number">${index+1}</span>${title}</h3><p>${text}</p></li>`).join('')}</ol></div></section>
 <section id="en-practica" class="section soft"><div class="wrap">${heading('El material en acción','Mecánicos usando el Atlas Visual en la práctica')}${gallery('Demostraciones ilustrativas del Atlas en el taller', practiceItems, practiceCard)}<div class="center">${button('Quiero recibir los 70 mapas visuales')}</div></div></section>
-<section id="experiencias" class="section"><div class="wrap">${showingConversationMockups ? heading('Relatos Reales', 'Lo que dicen los mecánicos que ya usan el Atlas') : heading('Opiniones de mecánicos','Experiencias en el taller')}<div class="feedback-grid">${feedbackItems.map(feedbackCard).join('')}</div><div class="testimonial-gallery">${authorizedTestimonials.map(item => `<figure class="testimonial"><blockquote>${esc(item.quote)}</blockquote><figcaption>${esc(item.name)}${item.role ? `<small>${esc(item.role)}</small>` : ''}</figcaption></figure>`).join('')}</div></div></section>
-<section id="oferta" class="section offer"><div class="wrap">${heading('Elige tu plan','Elige tu Atlas y llévalo a tu próxima revisión','Empieza con los 70 mapas del Atlas o elige el plan completo con los 3 bonos y soporte prioritario. Un solo pago, sin mensualidades.')}<div class="plans-grid">${planCard('basic')}${planCard('complete')}</div>${Object.values(planCheckouts).every(Boolean) ? '' : '<p id="checkout-status" class="checkout-status plans-checkout-status">Enlaces oficiales de compra pendientes de configurar.</p>'}</div></section>
+<section id="experiencias" class="section"><div class="wrap">${showingConversationMockups ? heading('Relatos Reales', 'Lo que dicen los mecánicos que ya usan el Atlas') : heading('Opiniones de mecánicos','Experiencias en el taller')}<div class="feedback-slider" role="region" aria-label="Conversaciones sobre el Atlas"><div class="feedback-track" tabindex="0">${feedbackItems.map(feedbackCard).join('')}</div><button class="feedback-pause sr-only" aria-label="Detener movimiento de las conversaciones">Detener movimiento</button></div><div class="testimonial-gallery">${authorizedTestimonials.map(item => `<figure class="testimonial"><blockquote>${esc(item.quote)}</blockquote><figcaption>${esc(item.name)}${item.role ? `<small>${esc(item.role)}</small>` : ''}</figcaption></figure>`).join('')}</div></div></section>
+<section id="oferta" class="section offer"><div class="wrap">${heading('Elige tu plan','Elige tu Atlas y llévalo a tu próxima revisión','Empieza con los 70 mapas del Atlas o elige el plan completo con los 3 bonos y soporte prioritario. Un solo pago, sin mensualidades.')}<div class="plans-grid">${planCard('complete')}${planCard('basic')}</div>${Object.values(planCheckouts).every(Boolean) ? '' : '<p id="checkout-status" class="checkout-status plans-checkout-status">Enlaces oficiales de compra pendientes de configurar.</p>'}</div></section>
 <section id="garantia" class="section"><div class="wrap"><div class="guarantee-card"><div class="seal">${url(c.guarantee.seal) ? productImage(c.guarantee.seal,'Sello de garantía de compra','Sello de garantía pendiente') : `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m24 4 16 6v13c0 10-16 20-16 20S8 33 8 23V10z"/><path d="m16 23 6 6 11-12"/></svg><small>${guaranteeReady ? `${esc(c.guarantee.days)} DÍAS` : 'PLAZO PENDIENTE'}</small>`}</div>${heading('Garantía de compra',guaranteeReady ? `Tienes ${esc(c.guarantee.days)} días para revisar el material` : 'Condiciones de garantía pendientes',guaranteeReady ? `Abre el Atlas, consulta las fichas y revisa si el formato te resulta útil para tu trabajo. Puedes solicitar un reembolso dentro del plazo indicado a través de ${esc(c.guarantee.channel)}, según las condiciones de compra.` : 'El plazo y el canal de reembolso se confirmarán antes de habilitar la compra. Esta sección está preparada para incorporar las condiciones oficiales.')}</div></div></section>
 <section id="faq" class="section soft"><div class="wrap narrow">${heading('Resolvemos tus dudas','Preguntas frecuentes')}<div class="faq">${data.faq.map(([question,answer],index) => `<details ${index === 0 ? 'open' : ''}><summary aria-expanded="${index === 0}" aria-controls="faq-${index}"><span>${question}</span><span class="expand" aria-hidden="true">+</span></summary><div class="detail-body" id="faq-${index}"><p>${index === 5 ? (guaranteeReady ? `Tienes ${esc(c.guarantee.days)} días para solicitar el reembolso por ${esc(c.guarantee.channel)}, según las condiciones de compra.` : 'El plazo y el canal de garantía están pendientes de confirmación. Se indicarán aquí antes de habilitar la compra.') : answer}</p></div></details>`).join('')}</div><div class="center" id="faq-purchase">${button('Quiero asegurar mi Atlas ahora')}</div></div></section>`;
 
@@ -217,3 +217,27 @@ document.querySelectorAll('a.purchase[data-plan]').forEach(link => {
     }
   });
 });
+
+// Advance WhatsApp screenshots one at a time, leaving time to read each slide.
+const feedbackSlider = document.querySelector('.feedback-slider');
+if (feedbackSlider) {
+  const track = feedbackSlider.querySelector('.feedback-track');
+  const control = feedbackSlider.querySelector('.feedback-pause');
+  let paused = reducedMotion.matches;
+  let visible = false;
+  const update = () => {
+    control.textContent = paused ? 'Reanudar movimiento' : 'Detener movimiento';
+    control.setAttribute('aria-label', `${control.textContent} de las conversaciones`);
+  };
+  control.addEventListener('click', () => { paused = !paused; update(); });
+  reducedMotion.addEventListener('change', event => { paused = event.matches; update(); });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(track);
+  setInterval(() => {
+    if (paused || !visible || document.hidden || dialog.open || feedbackSlider.matches(':hover, :focus-within')) return;
+    const slides = [...track.children];
+    if (slides.length < 2) return;
+    const current = Math.round(track.scrollLeft / track.clientWidth);
+    track.scrollTo({left: ((current + 1) % slides.length) * track.clientWidth, behavior: 'smooth'});
+  }, 6000);
+  update();
+}
