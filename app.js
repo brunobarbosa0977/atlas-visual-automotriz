@@ -232,12 +232,29 @@ if (feedbackSlider) {
   control.addEventListener('click', () => { paused = !paused; update(); });
   reducedMotion.addEventListener('change', event => { paused = event.matches; update(); });
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(track);
+  const slideCount = track.children.length;
+  if (slideCount > 1) {
+    const first = track.children[0];
+    const clone = first.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.tabIndex = -1;
+    clone.addEventListener('click', () => first.click());
+    track.append(clone);
+  }
+  const resetLoop = () => {
+    if (Math.round(track.scrollLeft / track.clientWidth) === slideCount) {
+      track.scrollTo({left: 0, behavior: 'instant'});
+    }
+  };
+  track.addEventListener('scrollend', resetLoop);
   setInterval(() => {
     if (paused || !visible || document.hidden || dialog.open || feedbackSlider.matches(':hover, :focus-within')) return;
-    const slides = [...track.children];
-    if (slides.length < 2) return;
+    if (slideCount < 2) return;
+    resetLoop();
     const current = Math.round(track.scrollLeft / track.clientWidth);
-    track.scrollTo({left: ((current + 1) % slides.length) * track.clientWidth, behavior: 'smooth'});
-  }, 6000);
+    track.scrollTo({left: (current + 1) * track.clientWidth, behavior: 'smooth'});
+    // Fallback for browsers without the scrollend event.
+    setTimeout(resetLoop, 1000);
+  }, 3000);
   update();
 }
