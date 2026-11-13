@@ -200,3 +200,20 @@ dialog.addEventListener('close', () => opener?.focus({preventScroll:true}));
 if(campaignConfirmed) document.querySelector('.ribbon').textContent = `🎁 Oferta especial del ${c.campaign.date} · 70 mapas visuales de diagnóstico automotriz + 3 bonos en el plan completo con ${c.campaign.discount} de descuento.`;
 const ready = Object.values(planCheckouts).every(Boolean) && guaranteeReady && url(c.images.hero) && url(c.images.bonusTests) && url(c.images.bonusChecklist) && url(c.images.bonusGuide) && samples.length && samples.every(item => url(item.src));
 if(c.published && ready) { document.querySelector('.preview')?.remove(); document.querySelector('meta[name="robots"]').content = 'index,follow'; }
+
+// A checkout click starts checkout; confirmed purchases are tracked by Hotmart.
+document.querySelectorAll('a.purchase[data-plan]').forEach(link => {
+  link.addEventListener('click', () => {
+    const key = link.dataset.plan;
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'InitiateCheckout', {
+        content_name: key === 'complete' ? 'Atlas Visual + 3 bonos' : 'Atlas Visual',
+        content_ids: [`atlas-${key}`],
+        content_type: 'product',
+        value: Number(c.plans[key].price),
+        currency: 'USD',
+        num_items: 1
+      });
+    }
+  });
+});
