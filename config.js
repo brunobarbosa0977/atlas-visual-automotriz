@@ -1,7 +1,7 @@
 export const config = {
   plans: {
-    basic: {price: '9.90', checkoutUrl: ''},
-    complete: {price: '14.90', checkoutUrl: ''}
+    basic: {price: '9.90', checkoutUrl: 'https://pay.hotmart.com/F108481093B?off=nghr1l7t&checkoutMode=10'},
+    complete: {price: '14.90', checkoutUrl: 'https://pay.hotmart.com/F108481093B?off=5chqitjm&checkoutMode=10'}
   },
   campaign: { date: '', discount: '', confirmed: false },
   guarantee: { days: null, channel: '', seal: 'assets/garantia.svg' },
