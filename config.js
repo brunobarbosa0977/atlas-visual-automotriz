@@ -4,7 +4,7 @@ export const config = {
     complete: {price: '14.90', checkoutUrl: 'https://pay.hotmart.com/T108492322L?off=t82r2b93&checkoutMode=10'}
   },
   campaign: { date: '', discount: '', confirmed: false },
-  guarantee: { days: null, channel: '', seal: 'assets/garantia.svg' },
+  guarantee: { days: 7, channel: 'Hotmart', seal: 'assets/garantia.svg' },
   images: { cover: '', hero: 'assets/optimized/hero-1200-d2cc70d522.webp', bundle: 'assets/optimized/bundle-1200-8150874f9b.webp', bonusTests: 'assets/optimized/bonus-tests-720-a82d8ad790.webp', bonusChecklist: 'assets/optimized/bonus-checklist-720-20f106b567.webp', bonusGuide: 'assets/optimized/bonus-guide-720-9efea54e17.webp' },
   bonus3: {title: 'Guía de Diagnóstico sin Códigos de Falla', description: 'Cuando el vehículo presenta un síntoma pero el escáner no registra códigos de falla, consulta la guía para ordenar la revisión. Parte de lo que observas en el motor y elige la siguiente comprobación antes de cambiar una pieza.'},
   // Only product pages from the actual Atlas may be marked as real samples.
