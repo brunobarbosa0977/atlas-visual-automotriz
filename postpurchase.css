@@ -5,4 +5,4 @@
 
 #hotmart-sales-funnel{display:flex;justify-content:center;width:100%;margin:16px auto;min-width:0}#hotmart-sales-funnel>*{max-width:100%}
 #hotmart-sales-funnel iframe{width:100%;max-width:100%;min-width:0!important;border:0}
-@media(max-width:600px){.pp-widget{margin-left:-18px;margin-right:-18px}}
+@media(max-width:600px){body[data-offer="upsell"] .pp-widget{margin-left:-18px;margin-right:-18px}}

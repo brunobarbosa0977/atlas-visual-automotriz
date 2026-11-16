@@ -7,9 +7,9 @@
 
 ## Widget oficial de compra de un clic
 
-Las dos páginas incluyen el código oficial `hotmart-checkout-elements.js` y una sola llamada por página a `checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')`.
+Solo la página de upsell incluye el código oficial `hotmart-checkout-elements.js` y una sola llamada a `checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')`.
 
-Los botones de demostración y los enlaces manuales de rechazo fueron eliminados. El widget de Hotmart controla las opciones de aceptación y rechazo. Los contenedores exteriores `#hotmart-upsell-widget` y `#hotmart-downsell-widget` se mantienen para organizar el layout.
+En el upsell, el botón de demostración y el enlace manual de rechazo fueron eliminados. El downsell mantiene su versión anterior, sin widget oficial y con botón de demostración desactivado. El widget de Hotmart controla las opciones de aceptación y rechazo. El contenedor exterior `#hotmart-upsell-widget` se mantiene para organizar el layout.
 
 Para activar el flujo correcto, asociar estas URLs a los pasos y ofertas correspondientes en el Funil de Vendas de Hotmart. Verificar los destinos de aceptación/rechazo dentro de Hotmart. No probar un cargo desde una visita directa sin contexto de compra: validar el flujo con una sesión autorizada de compra, comprobando precio, entrega y mantenimiento del Atlas principal. Este código de embed genérico no identifica por sí solo la oferta ni el precio.
 
