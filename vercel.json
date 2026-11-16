@@ -30,6 +30,10 @@
     {
       "source": "/gracias-vip",
       "destination": "/gracias-vip.html"
+    },
+    {
+      "source": "/upsell-basico",
+      "destination": "/upsell-basico.html"
     }
   ]
 }

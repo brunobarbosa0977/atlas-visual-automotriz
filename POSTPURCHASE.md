@@ -43,3 +43,9 @@ No se incorporan porcentajes sin fuente, tiempos garantizados de diagnóstico, p
 - Son páginas estáticas de instrucciones, no verifican pagos, no liberan archivos y no autentican al comprador. El acceso a los productos sigue controlado por Hotmart. Visitar la URL VIP directamente no concede acceso.
 - Sustituir los enlaces `https://consumer.hotmart.com` marcados con `INSERIR LINK DO HOTMART CLUB AQUI` por los enlaces específicos del producto/área de miembros cuando estén disponibles.
 - El soporte remite a los datos del productor dentro de la compra en Hotmart: no se inventó un correo ni se prometió un plazo de respuesta. Si existe un canal oficial directo, incorporarlo en las tarjetas de soporte.
+
+## Funil separado do plano básico
+
+`/upsell-basico` (también `/upsell-basico.html`) es una copia de `/upsell`, con la misma VSL, contenido, estilos y oferta adicional de US$ 29,90. El nombre básico identifica el producto principal de US$ 9,90 que originó el embudo; no cambia el precio del upsell.
+
+La copia ya incluye el widget oficial de Hotmart, con una única carga de `hotmart-checkout-elements.js` y una llamada a `checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')`. No hay botones ficticios ni rechazos manuales. La URL de esta página debe asociarse al segundo embudo dentro de Hotmart; el embed genérico utiliza el contexto de la sesión de compra y no selecciona un precio por el nombre de la ruta. La página original `/upsell` permanece intacta.
