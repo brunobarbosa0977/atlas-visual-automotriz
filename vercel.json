@@ -22,6 +22,14 @@
     {
       "source": "/downsell",
       "destination": "/downsell.html"
+    },
+    {
+      "source": "/gracias",
+      "destination": "/gracias.html"
+    },
+    {
+      "source": "/gracias-vip",
+      "destination": "/gracias-vip.html"
     }
   ]
 }

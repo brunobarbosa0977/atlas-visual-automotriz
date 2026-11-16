@@ -33,3 +33,13 @@ No se incorporan porcentajes sin fuente, tiempos garantizados de diagnóstico, p
 ## Publicación
 
 `npm run build` incluye ambos HTML y sus archivos comunes en `dist`. `vercel.json` define `/upsell` y `/downsell`; `server.mjs` reproduce esas rutas para pruebas locales.
+
+## Páginas de agradecimiento
+
+- `/gracias` o `/gracias.html`: compra del producto principal, sin el Sistema Avanzado.
+- `/gracias-vip` o `/gracias-vip.html`: compra del principal y del Sistema Avanzado.
+- Ambas usan `gracias.css`, que importa las fuentes y variables del sitio principal. No cargan widgets de compra ni disparan Purchase.
+- En Hotmart, configurar las URLs como destinos apropiados después de una compra aprobada y las decisiones del embudo. No enviar pagos pendientes o rechazados a estas páginas de confirmación.
+- Son páginas estáticas de instrucciones, no verifican pagos, no liberan archivos y no autentican al comprador. El acceso a los productos sigue controlado por Hotmart. Visitar la URL VIP directamente no concede acceso.
+- Sustituir los enlaces `https://consumer.hotmart.com` marcados con `INSERIR LINK DO HOTMART CLUB AQUI` por los enlaces específicos del producto/área de miembros cuando estén disponibles.
+- El soporte remite a los datos del productor dentro de la compra en Hotmart: no se inventó un correo ni se prometió un plazo de respuesta. Si existe un canal oficial directo, incorporarlo en las tarjetas de soporte.
