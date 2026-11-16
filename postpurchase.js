@@ -13,7 +13,7 @@ if(checkout && fallback){
   if(status)status.textContent='Revisa y confirma esta compra adicional en el checkout de Hotmart.';
 }
 const embed=httpsUrl(offer?.videoEmbedUrl);
-if(embed && kind==='upsell'){
+if(embed && kind==='upsell' && !document.querySelector('vturb-smartplayer')){
  const allowed=['www.youtube.com','www.youtube-nocookie.com','player.vimeo.com','player.hotmart.com'];
  if(allowed.includes(new URL(embed).hostname)){
   const iframe=document.createElement('iframe');iframe.src=embed;iframe.title='Presentación del Sistema Avanzado Multi-Sistemas';

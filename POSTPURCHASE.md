@@ -20,6 +20,8 @@ Los botones de demostración permanecen desactivados hasta instalar los widgets.
 
 ## Vídeo y acceso
 
+La VSL del upsell ya está integrada con el player VTurb `vid-6afa81db504e9e302adfc2de` y el script oficial de ConverteAI. El player directo tiene prioridad sobre `videoEmbedUrl`.
+
 - Configurar `upsell.videoEmbedUrl` con una URL de embed HTTPS de YouTube, YouTube sin cookies, Vimeo o player.hotmart.com; no una URL de página de reproducción normal.
 - Alternativamente sustituir el poster en el contenedor `.pp-video` por el iframe/player oficial en el comentario indicado. El contenido visible no promete un vídeo de dos minutos mientras no exista.
 - Configurar `accessUrl` con el enlace específico de la biblioteca/área de miembros. Por defecto se usa el acceso oficial general `https://consumer.hotmart.com/`.
