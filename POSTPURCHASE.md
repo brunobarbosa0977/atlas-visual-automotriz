@@ -5,18 +5,15 @@
 - Las páginas usan las mismas fuentes y variables de `styles.css`; los estilos específicos están en `postpurchase.css`.
 - La página principal, sus planes y sus checkouts no cambian.
 
-## Activar la compra de un clic
+## Widget oficial de compra de un clic
 
-1. Crear las dos ofertas adicionales y el embudo en Hotmart.
-2. Obtener el código oficial de widget de cada oferta.
-3. En `upsell.html`, sustituir el botón de demostración y el estado del contenedor `#hotmart-upsell-widget` por el código oficial completo.
-4. Repetir en `downsell.html` dentro de `#hotmart-downsell-widget`.
-5. Configurar en Hotmart el destino de aceptación y rechazo. El enlace de rechazo HTML del upsell apunta a `/downsell`; el rechazo final se configura con `accessUrl` en `postpurchase-config.js`.
-6. Probar el flujo con una sesión de compra válida de Hotmart. Verificar oferta, valor cobrado, entrega y acceso al producto principal.
+Las dos páginas incluyen el código oficial `hotmart-checkout-elements.js` y una sola llamada por página a `checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')`.
 
-Los botones de demostración permanecen desactivados hasta instalar los widgets. No hay cobros simulados ni eventos Purchase enviados desde estas páginas. La confirmación y medición de la compra adicional corresponden a la integración de Hotmart.
+Los botones de demostración y los enlaces manuales de rechazo fueron eliminados. El widget de Hotmart controla las opciones de aceptación y rechazo. Los contenedores exteriores `#hotmart-upsell-widget` y `#hotmart-downsell-widget` se mantienen para organizar el layout.
 
-`checkoutUrl` en `postpurchase-config.js` es un fallback opcional a un checkout HTTPS regular: al configurarlo, el botón se convierte en «CONTINUAR EN EL CHECKOUT DE HOTMART». Esto no implementa un cargo de un clic ni promete reutilizar los datos del pago.
+Para activar el flujo correcto, asociar estas URLs a los pasos y ofertas correspondientes en el Funil de Vendas de Hotmart. Verificar los destinos de aceptación/rechazo dentro de Hotmart. No probar un cargo desde una visita directa sin contexto de compra: validar el flujo con una sesión autorizada de compra, comprobando precio, entrega y mantenimiento del Atlas principal. Este código de embed genérico no identifica por sí solo la oferta ni el precio.
+
+La integración se entrega instalada. No se ha ejecutado una compra real ni se envía Purchase desde el frontend de estas páginas. Los eventos de cobro confirmado corresponden a Hotmart.
 
 ## Vídeo y acceso
 
@@ -24,7 +21,7 @@ La VSL del upsell ya está integrada con el player VTurb `vid-6afa81db504e9e302a
 
 - Configurar `upsell.videoEmbedUrl` con una URL de embed HTTPS de YouTube, YouTube sin cookies, Vimeo o player.hotmart.com; no una URL de página de reproducción normal.
 - Alternativamente sustituir el poster en el contenedor `.pp-video` por el iframe/player oficial en el comentario indicado. El contenido visible no promete un vídeo de dos minutos mientras no exista.
-- Configurar `accessUrl` con el enlace específico de la biblioteca/área de miembros. Por defecto se usa el acceso oficial general `https://consumer.hotmart.com/`.
+- Configurar el destino final de acceso y los pasos de rechazo en el embudo de Hotmart.
 - Mantener los siete días de garantía configurados también en las ofertas de Hotmart.
 
 ## Copy

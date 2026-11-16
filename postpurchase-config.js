@@ -1,7 +1,5 @@
-// Paste official Hotmart one-click widget code directly in each HTML widget container.
-// Optional checkoutUrl is a regular checkout fallback, not a one-click charge.
+// Purchase and decline actions are managed by the official Hotmart funnel widget.
 export const postPurchaseConfig = {
-  upsell: { checkoutUrl: '', videoEmbedUrl: '' },
-  downsell: { checkoutUrl: '' },
-  accessUrl: 'https://consumer.hotmart.com/'
+  upsell: { videoEmbedUrl: '' },
+  downsell: {}
 };
